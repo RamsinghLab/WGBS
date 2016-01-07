@@ -26,13 +26,13 @@ http://www.bioinf.uni-leipzig.de/Software/metilene/
 
 
 
-WGBS-Pipeline/nativeApp/:
+WGBS/nativeApp/:
 
 ~Instructions~
 
 1) Dockerfile
 
-2) Scripts/
+2) scripts/
 
   a) Form_Builder.json
   
