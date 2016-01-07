@@ -7,7 +7,7 @@ There are two forms of the pipeline:
 2) Localized app
 
 
-Both Require the Installation of the following packages:
+Both Require the Installation of the following packages, however the initialization script will do this for you:
 1) BWA-Meth: look to WGBS-Pipeline/nativeApp/Scripts for installtion
 
 https://github.com/brentp/bwa-meth
@@ -74,6 +74,11 @@ WGBS/nativeApp/:
     mm9, mm10
   
   c) 
+
+WGBS/Local
+
+#before beginning this process, place all of the raw fastq files to be analyzed into the data/input folder
+
 
 
 
