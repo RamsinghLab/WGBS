@@ -1,4 +1,4 @@
-# WGBS-Pipeline Version 1 December 2015
+# WGBS Pipeline
 
 There are two forms of the pipeline:
 
@@ -26,7 +26,7 @@ http://www.bioinf.uni-leipzig.de/Software/metilene/
 
 
 
-WGBS/nativeApp/:
+#WGBS/nativeApp/:
 
 ~Instructions~
 
@@ -75,9 +75,9 @@ WGBS/nativeApp/:
   
   c) 
 
-WGBS/Local
+#WGBS/Local/
 
-#before beginning this process, place all of the raw fastq files to be analyzed into the data/input folder
+before beginning this process, place all of the raw fastq files to be analyzed into the data/input folder
 
 
 
