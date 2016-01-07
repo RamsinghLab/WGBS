@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#use this script to download the hg38 genome
+
+cd ~/wgbs/reference/human/genome/hg38/
+
+wget http://http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
