@@ -13,35 +13,34 @@ MAINTAINER Jacob Leonard <jaleonar@usc.edu>
 # Update the repository sources list
 RUN apt-get update
 
-# Construct the file system with the folders needed for software, reference genomes, and components
-RUN mkdir -p /bwa-meth /pileometh /metilene /toolshed /reference /reference/bedgraphs /reference/bam 
+# Construct the file system with the folders need for software, reference genom$
+RUN mkdir -p /data /reference /scripts /software
 COPY reference /reference
+COPY scripts /scripts
 
 #Install Python and Pip for BWA-Meth
 RUN apt-get install -y python python-dev python-distribute python-pip
 RUN pip install --upgrade pip
+RUN apt-get install git
 
 #Install dependencies for scripting
 RUN pip install sh
 
-#Install union bed graph/bed tools
-RUN apt-get install bedtools
+#Update
+RUN apt-get update
 
 #Run the scripts to download and unpack the software
-RUN bash /scripts/bwa_meth.sh
-RUN bash /scripts/toolshed.sh
-RUN bash /scripts/metilene.sh
-RUN bash /scripts/pileometh.sh
-
-#copy the downloaded packages to the constructed directories, and then remove original 
-COPY /bwa-meth-master/ /bwa-meth
-COPY /
-
-#Intall packages
-RUN python /bwa-meth/setup.py install 
-RUN bash /metilene/Makefile make
-RUN python /toolshed/setup.py install
-RUN
+RUN bash /scripts/toolshed-install-native.sh
+RUN apt-get update
+RUN bash /scripts/bwa-meth-install-native.sh
+RUN apt-get update
+RUN bash /scripts/metilene-install-native.sh
+RUN apt-get update
+RUN bash /scripts/pileometh-install-native.sh
+RUN apt-get update
+RUN bash /scripts/sushi-install-native.sh
+RUN apt-get update
+RUN bash /scripts/bedtools-install-native.sh
 
 RUN apt-get update
 ###### End Installation ###########
