@@ -14,7 +14,7 @@ python bwameth.py index /reference/human/genome/"$1".fa
 cd /data/scratch/pileometh/
 
 #align all of the samples in the data/input/samples folder, and maintain sample names
-for "$filename" in /data/input/samples/*; do
+for filename in /data/input/samples/; do
     #align all of the samples, and produce bam files that maintain names
     python bwameth.py --reference /reference/human/genome/"$1".fa "$filename" --prefix "$filename"
 done
@@ -35,7 +35,7 @@ python bwameth.py index /reference/mouse/genome/"$1".fa
 cd /data/scratch/pileometh/
 
 #align all of the samples in the data/input folder, and maintain sample names
-for "$filename" in /data/input/samples/*; do
+for filename in /data/input/samples/*; do
     #align all of the samples, and produce bam files that maintain names
     python bwameth.py --reference /reference/mouse/genome/"$1".fa "$filename" --prefix "$filename"
 done
