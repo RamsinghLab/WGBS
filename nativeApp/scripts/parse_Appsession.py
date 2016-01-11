@@ -36,14 +36,14 @@ sampleName = []
 sampleDir = []
 for index in range(numberOfPropertyItems):
 # add parameters to parameters list
-	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.session':
-        	session = jsonObject['Properties']['Items'][index]['Content']
+	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Sesion':
+        	Sesion = jsonObject['Properties']['Items'][index]['Content']
     		parameter_list.append(session)
-	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.genome':
-                genome = jsonObject['Properties']['Items'][index]['Items'][0]
+	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Genome':
+                Genome = jsonObject['Properties']['Items'][index]['Items'][0]
                 parameter_list.append(genome)
-	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.chromosome':
-                chromosome = jsonObject['Properties']['Items'][index]['Items'][0]
+	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Chromosome':
+                Chromosome = jsonObject['Properties']['Items'][index]['Items'][0]
                 parameter_list.append(chromosome)
 # set project ID
     	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Projects':
@@ -68,9 +68,9 @@ for index in range(numberOfPropertyItems):
 # create output file to transfer the desired genome and chromosome
 			file = '/data/scratch/genome.txt' %(desired genome)
 			outFile1 = open(file ,'w')
-			outFile.write('%s' %parameter_list.genome)  
+			outFile.write('%s' %parameter_list.Genome)  
                 	outFile1.close()
 			file = '/data/scratch/chromosome.txt' %(desired chromosome)
 			outFile2 = open(file ,'w')
-			outFile.write('%s' %parameter_list.chromosome)  
+			outFile.write('%s' %parameter_list.Chromosome)  
                 	outFile2.close()
