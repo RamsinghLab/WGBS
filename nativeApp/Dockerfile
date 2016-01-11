@@ -14,7 +14,7 @@ MAINTAINER Jacob Leonard <jaleonar@usc.edu>
 RUN apt-get update
 
 # Construct the file system with the folders need for software, reference genom$
-RUN mkdir -p /data /reference /scripts /software
+RUN mkdir -p /reference /scripts /software
 COPY reference /reference
 COPY scripts /scripts
 
@@ -37,8 +37,6 @@ RUN apt-get update
 RUN bash /scripts/metilene-install-native.sh
 RUN apt-get update
 RUN bash /scripts/pileometh-install-native.sh
-RUN apt-get update
-RUN bash /scripts/manhattan-install-native.sh
 RUN apt-get update
 RUN bash /scripts/bedtools-install-native.sh
 
