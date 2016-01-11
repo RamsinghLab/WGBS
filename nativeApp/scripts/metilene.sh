@@ -4,29 +4,10 @@
 
 ######################################################################
 
-### the following code assumes the reference is human #####
-if [ "$genome" == "hg19" ] || [ "$genome" == "hg38" ]; then
-
 #naviagte to the scratch folder to place the bedgraph files 
-cd /data/scratch/sushi/
+cd /data/scratch/plots/
 
-#use metilene on the text file to create bed files for use by sushi
-metilene -t 32 /data/scratch/metilene/NS_for_metilene.txt | sort -V -k1,1 -k2,2n > metilene_DMR_calls.bed
-
-#conclude the if statement 
-fi
+#use metilene on the text file to create the bed file for use by plot.py
+metilene -t 32 /data/scratch/metilene/counts.txt | sort -V -k1,1 -k2,2n > metilene_DMR_calls.bed
 
 
-#######################################################################
-
-### the following code assumes the reference is mouse ####
-if [ "$genome" == "mm9" ] || [ "$genome" == "mm10" ]; then
-
-#naviagte to the scratch folder to place the bedgraph files 
-cd /data/scratch/sushi/
-
-#use metilene on the text file to create bed files for use by sushi
-metilene -t 32 /data/scratch/metilene/NS_for_metilene.txt | sort -V -k1,1 -k2,2n > metilene_DMR_calls.bed
-
-#conclude the if statement 
-fi
