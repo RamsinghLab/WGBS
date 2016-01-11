@@ -49,7 +49,7 @@ bash unionbedgraph.sh
 #invovke the metilene script with the text file produced by unionbedgraph, and place the beds into the data/scratch/sushi folder
 bash metilene.sh
 
-#invoke the sushi script and place the output graphics files into the data/output folder
+#invoke the manhattan plot script and place the output graphics files into the data/output/appresults/ folder
 python manhattan.py
 
 
