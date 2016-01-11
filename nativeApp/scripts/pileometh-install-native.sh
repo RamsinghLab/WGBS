@@ -4,5 +4,5 @@
 
 cd /software/
 git clone https://github.com/dpryan79/PileOMeth.git
-cd /PileOMeth/
+cd /software/PileOMeth
 make
