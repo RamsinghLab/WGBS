@@ -18,12 +18,18 @@ RUN mkdir -p /reference /scripts /software
 COPY reference /reference
 COPY scripts /scripts
 
-#Install Python and Pip for BWA-Meth
-RUN apt-get install -y python python-dev python-distribute python-pip
-RUN pip install --upgrade pip
-RUN apt-get install git
+#Install dependencies               
+RUN apt-get update && apt-get install -y \
+        python \
+        python-dev \
+        python-distribute \
+        python-pip \
+        git \
+        wget \
+        zlib1g-dev
 
-#Install dependencies for scripting
+#Install dependencies for scripting and upgrade pip
+RUN pip install --upgrade pip
 RUN pip install sh
 
 #Update
@@ -31,14 +37,11 @@ RUN apt-get update
 
 #Run the scripts to download and unpack the software
 RUN bash /scripts/toolshed-install-native.sh
-RUN apt-get update
 RUN bash /scripts/bwa-meth-install-native.sh
-RUN apt-get update
 RUN bash /scripts/metilene-install-native.sh
-RUN apt-get update
 RUN bash /scripts/pileometh-install-native.sh
-RUN apt-get update
 RUN bash /scripts/bedtools-install-native.sh
 
 RUN apt-get update
 ###### End Installation ###########
+
