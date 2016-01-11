@@ -7,7 +7,7 @@ cd /scripts/
 python parse_Appsession.py
 
 #read the text files produced by the app session and determine the genome and chromosome
-cd /scripts/
+cd /data/scratch/
 genome='cat genome.txt'
 chromosome='cat chromosome.txt'
 
