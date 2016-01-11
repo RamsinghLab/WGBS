@@ -13,7 +13,7 @@ cd /data/scratch/unionbedgraph/
 #take in all of the bam files in the data/scratch/pileometh folder, and maintain sample names to produce bedgraphs
 for filename in /data/scratch/pileometh/*.bam; do
     #take in all the bam files and produce count and fraction data
-    PileOMeth extract --fraction /reference/human/chromosome/"$1"/"$2".fa /data/scratch/pileometh/"$filename".bedgraph
+    PileOMeth extract --fraction /reference/human/chromosome/"$1"/"$2".fa "$filename"
 done
 
 #conclude the if statement 
@@ -31,7 +31,7 @@ cd /data/scratch/unionbedgraph/
 #take in all of the bam files in the data/scratch/pileometh folder, and maintain sample names to produce bedgraphs
 for filename in /data/scratch/pileometh/*.bam; do
     #take in all the bam files and produce count and fraction data
-    PileOMeth extract --fraction /reference/mouse/chromosome/"$1"/"$2".fa /data/scratch/pileometh/"$filename".bedgraph
+    PileOMeth extract --fraction /reference/mouse/chromosome/"$1"/"$2".fa "$filename"
 done
 
 #conclude the if statement 
