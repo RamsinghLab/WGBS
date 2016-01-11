@@ -44,10 +44,10 @@ bash bwa-meth.sh "$genome"
 bash pileometh.sh "$genome" "$chromosome"
 
 #invoke the unionbedgraph script and place the text file in the data/scratch/metilene folder
-bash unionbedgraph.sh 
+bash unionbedgraph.sh "$genome"
 
 #invovke the metilene script with the text file produced by unionbedgraph, and place the beds into the data/scratch/sushi folder
-bash metilene.sh
+bash metilene.sh "$genome"
 
 #invoke the manhattan plot script and place the output graphics files into the data/output/appresults/ folder
 python manhattan.py
