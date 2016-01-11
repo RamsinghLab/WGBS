@@ -37,14 +37,14 @@ sampleDir = []
 for index in range(numberOfPropertyItems):
 # add parameters to parameters list
 	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.session':
-        	parameter = jsonObject['Properties']['Items'][index]['Content']
-    		parameter_list.append(parameter)
+        	session = jsonObject['Properties']['Items'][index]['Content']
+    		parameter_list.append(session)
 	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.genome':
-                parameter = jsonObject['Properties']['Items'][index]['Items'][0]
-                parameter_list.append(parameter)
+                genome = jsonObject['Properties']['Items'][index]['Items'][0]
+                parameter_list.append(genome)
 	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.chromosome':
-                parameter = jsonObject['Properties']['Items'][index]['Items'][0]
-                parameter_list.append(parameter)
+                chromosome = jsonObject['Properties']['Items'][index]['Items'][0]
+                parameter_list.append(chromosome)
 # set project ID
     	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Projects':
         	projectID = jsonObject['Properties']['Items'][index]['Items'][0]['Id']
@@ -65,13 +65,12 @@ for index in range(numberOfPropertyItems):
        			if len(R1files) != len(R2files):
            			print "number of R1 and R2 files do not match"
             			sys.exit()
-			sampleOutDir = '/data/output/appresults/' %(projectID,sampleName[sample])
-			os.system('mkdir -p "%s"' %(sampleOutDir))
-# create output file and print parameters to output file (this is where you would run the command)
-			file = '%s/parameters.csv' %(sampleOutDir)
-			outFile = open(file ,'w')
-			count = 0	
-        		for parameter in parameter_list:
-				count += 1
-				outFile.write('%s,%s\n' %(count,parameter))  
-                	outFile.close()
+# create output file to transfer the desired genome and chromosome
+			file = '/data/scratch/genome.txt' %(desired genome)
+			outFile1 = open(file ,'w')
+			outFile.write('%s' %parameter_list.genome)  
+                	outFile1.close()
+			file = '/data/scratch/chromosome.txt' %(desired chromosome)
+			outFile2 = open(file ,'w')
+			outFile.write('%s' %parameter_list.chromosome)  
+                	outFile2.close()
