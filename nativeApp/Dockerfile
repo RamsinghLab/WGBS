@@ -38,7 +38,7 @@ RUN bash /scripts/metilene-install-native.sh
 RUN apt-get update
 RUN bash /scripts/pileometh-install-native.sh
 RUN apt-get update
-RUN bash /scripts/sushi-install-native.sh
+RUN bash /scripts/manhattan-install-native.sh
 RUN apt-get update
 RUN bash /scripts/bedtools-install-native.sh
 
