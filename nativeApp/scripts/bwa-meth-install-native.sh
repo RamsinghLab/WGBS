@@ -9,4 +9,4 @@ wget https://github.com/brentp/bwa-meth/archive/v0.10.tar.gz
     cd bwa-meth-0.10/
     python setup.py install
 
-cp bwa-meth-0.10 /usr/local/bin/
+cp /software/bwa-meth-0.10 /usr/local/bin/
