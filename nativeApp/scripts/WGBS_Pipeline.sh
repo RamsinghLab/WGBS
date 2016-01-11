@@ -1,10 +1,10 @@
 #!/bin/sh
 #this is the full pipeline script to be run with basespace
-#the script will be a genral bash script that will call all the other scripts in order, depeneding on the process/choices of the user
+#the script will be a general bash script that will call all the other scripts in order, depeneding on the process/choices of the user
 
-#first execute the R script that will parse the app session
+#first execute the python script that will parse the app session
 cd /scripts/
-Rscript parse_Appsession.R
+python parse_Appsession.py
 
 #read the text files produced by the app session and determine the genome and chromosome
 cd /scripts/
@@ -35,7 +35,7 @@ fi
 mkdir /data/scratch/pileometh
 mkdir /data/scratch/unionbedgraph
 mkdir /data/scratch/metilene
-mkdir /data/scratch/sushi
+mkdir /data/scratch/manhattan
 
 #invoke the bwa-meth script with the passing of the genome variable, and place the bam files in the data/scratch/pileometh folder
 bash bwa-meth.sh "$genome"
@@ -50,6 +50,6 @@ bash unionbedgraph.sh
 bash metilene.sh
 
 #invoke the sushi script and place the output graphics files into the data/output folder
-Rscript sushi.R
+python manhattan.py
 
 
