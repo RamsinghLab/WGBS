@@ -50,5 +50,5 @@ bash unionbedgraph.sh "$genome"
 bash metilene.sh "$genome"
 
 #invoke the manhattan plot script and place the output graphics files into the data/output/appresults/ folder
-python manhattan-plot.py --colors rgbk --cols 0,1,6 /data/scratch/manhattan/counts.bed --image /data/output/appresults/manhattan.rgbk.png
+python manhattan-plot.py --colors rgbk --cols 0,1,6 /data/scratch/manhattan/metilene_DMR_calls.bed --image /data/output/appresults/manhattan.rgbk.png
 
