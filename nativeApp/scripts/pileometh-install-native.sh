@@ -6,3 +6,5 @@ cd /software/
 git clone https://github.com/dpryan79/PileOMeth.git
 cd /software/PileOMeth
 make
+
+cp /software/PileOMeth /ur/local/bin/
