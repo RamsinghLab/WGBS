@@ -7,5 +7,3 @@ wget  http://www.bioinf.uni-leipzig.de/Software/metilene/metilene_v02-3.tar.gz
     tar xzvf metilene_v02-3.tar.gz
     cd metilene_v0.2-3/
     make 
-
-cp /software/metilene_v0.2-3 /ur/local/bin/
