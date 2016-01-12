@@ -8,4 +8,3 @@ wget https://pypi.python.org/packages/source/t/toolshed/toolshed-0.4.0.tar.gz
     cd toolshed-0.4.0
     python setup.py install
     
-cp /software/toolshed-0.4.0 /usr/local/bin/
