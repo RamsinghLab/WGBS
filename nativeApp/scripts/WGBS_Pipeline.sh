@@ -32,10 +32,10 @@ fi
 #now that the desired genome and chromosome have been decompressed, the analysis can proceed
 
 #make the necessary directories for the transition files
-mkdir /data/scratch/pileometh
-mkdir /data/scratch/unionbedgraph
-mkdir /data/scratch/metilene
-mkdir /data/scratch/manhattan
+mkdir /data/output/appresults/alignment/
+mkdir /data/output/appresults/pileup/
+mkdir /data/output/appresults/union/
+mkdir /data/output/appresults/annotated/
 
 #invoke the bwa-meth script with the passing of the genome variable, and place the bam files in the data/scratch/pileometh folder
 bash bwa-meth.sh "$genome"
@@ -49,6 +49,4 @@ bash unionbedgraph.sh "$genome"
 #invovke the metilene script with the text file produced by unionbedgraph, and place the beds into the data/scratch/sushi folder
 bash metilene.sh "$genome"
 
-#invoke the manhattan plot script and place the output graphics files into the data/output/appresults/ folder
-python manhattan-plot.py --colors rgbk --cols 0,1,6 /data/scratch/manhattan/metilene_DMR_calls.bed --image /data/output/appresults/manhattan.rgbk.png
-
+# invoke the sushi script to plot the bed file as a manhattan plot, and many other plots forms 
