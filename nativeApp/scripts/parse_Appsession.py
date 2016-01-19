@@ -22,7 +22,7 @@ def metadatajson():
         )
         return json_file
 
-#app specific definitions (not needed for personal app)
+#app specific definitions
 parameter_list = []
 # load json file
 jsonfile = open('/data/input/AppSession.json')
@@ -36,15 +36,17 @@ sampleName = []
 sampleDir = []
 for index in range(numberOfPropertyItems):
 # add parameters to parameters list
-	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Sesion':
-        	Sesion = jsonObject['Properties']['Items'][index]['Content']
-    		parameter_list.append(session)
+	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Session':
+        	Session = jsonObject['Properties']['Items'][index]['Content']
+    		parameter_list.append(Session)
 	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Genome':
                 Genome = jsonObject['Properties']['Items'][index]['Items'][0]
-                parameter_list.append(genome)
+                parameter_list.append(Genome)
 	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Chromosome':
                 Chromosome = jsonObject['Properties']['Items'][index]['Items'][0]
-                parameter_list.append(chromosome)
+                parameter_list.append(Chromosome)
+
+
 # set project ID
     	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Projects':
         	projectID = jsonObject['Properties']['Items'][index]['Items'][0]['Id']
@@ -65,12 +67,38 @@ for index in range(numberOfPropertyItems):
        			if len(R1files) != len(R2files):
            			print "number of R1 and R2 files do not match"
             			sys.exit()
-# create output file to transfer the desired genome and chromosome
-			file = '/data/scratch/genome.txt' %(desired genome)
-			outFile1 = open(file ,'w')
-			outFile.write('%s' %parameter_list.Genome)  
-                	outFile1.close()
-			file = '/data/scratch/chromosome.txt' %(desired chromosome)
-			outFile2 = open(file ,'w')
-			outFile.write('%s' %parameter_list.Chromosome)  
-                	outFile2.close()
+			sampleOutDir = '/data/output/appresults/%s/%s' %(projectID,sampleName[sample])
+			os.system('mkdir -p "%s"' %(sampleOutDir))
+			
+# create output file and print sample names to output file
+			file = '/data/scratch/samplenames.csv' #this will create a csv
+			outFile = open(file ,'w')
+			count = 0	
+        		for sample in sampleName:
+				count += 1
+				outFile.write('%s,%s\n' %(count,sample))  
+                	outFile.close()
+
+# create output file and print parameters to output file
+			file = '/data/scratch/parameters.csv' #this will create a csv
+			outFile = open(file ,'w')
+			count = 0	
+        		for parameter in parameter_list:
+				count += 1
+				outFile.write('%s,%s\n' %(count,parameter))  
+                	outFile.close()
+                	
+#create metadata file for each appresult 
+			metadataObject = metadatajson()
+			metaJsonObject = json.loads(metadataObject)
+			
+#modify metadataObject
+			metaJsonObject['Name'] = jsonObject['Properties']['Items'][index]['Items'][sample]['Id'] 
+			metaJsonObject['Description'] = 'Sample Description' 
+			metaJsonObject['HrefAppSession'] = jsonObject['Href']
+			for href in sampleHref:
+				metaJsonObject['Properties'][0]['Items'].append(href) 
+	
+			metadataFile = '%s/_metadata.json' %(sampleOutDir)
+			outMetadataFile = open(metadataFile, 'w')
+			json.dump(metaJsonObject,outMetadataFile)
