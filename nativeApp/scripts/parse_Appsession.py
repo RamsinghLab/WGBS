@@ -71,25 +71,29 @@ for index in range(numberOfPropertyItems):
 			os.system('mkdir -p "%s"' %(sampleOutDir))
 			
 # create output file and print ProjectID
-			file = '/data/scratch/projectid.csv' #this will create a csv
+			file = '/data/scratch/projectid.txt' #this will create a csv
 			outFile = open(file ,'w')
-        		for sample in sampleName:
-				outFile.write('%s\n' %(sample)) #stores each sample name in a new row  
+        		outFile.write('%s' %(projectID)) #stores each sample name in a new row  
                 	outFile.close()
+                	
 # create output file and print sample names to output file
 			file = '/data/scratch/samplenames.csv' #this will create a csv
 			outFile = open(file ,'w')
-        		for sample in sampleName:
-				outFile.write('%s\n' %(sample)) #stores each sample name in a new row  
+        		for Name in sampleName:
+				outFile.write('%s\n' %(Name)) #stores each sample name in a new row  
                 	outFile.close()
 
-# create output file and print parameters to output file
-			file = '/data/scratch/parameters.csv' #this will create a csv
+# create output file and print genome to output file
+			file = '/data/scratch/genome.txt' #this will create a txt file
 			outFile = open(file ,'w')
-        		for Genome in parameter_list:
-        			for Chromosome in parameter_list:
-					outFile.write('%s\n,%s' %(Genome,Chromosome)) #stores each parameter value in a new row  
+			outFile.write('%s' %(Genome)) #stores the desired genome
                 	outFile.close()
+
+# create output file and print chromosome to output file
+			file = '/data/scratch/chromosome.txt' #this will create a txt file
+			outFile = open(file ,'w')
+			outFile.write('%s' %(Chromosome)) #stores the desired chromosome  
+                	outFile.close()                	
                 	
 #create metadata file for each appresult 
 			metadataObject = metadatajson()
