@@ -79,8 +79,8 @@ for index in range(numberOfPropertyItems):
 # create output file and print sample names to output file
 			file = '/data/scratch/samplenames.csv' #this will create a csv
 			outFile = open(file ,'w')
-        		for Name in sampleName:
-				outFile.write('%s\n' %(Name)) #stores each sample name in a new row  
+        		for sample in sampleName:
+				outFile.write('%s\n' %(sample)) #stores each sample name in a new row  
                 	outFile.close()
 
 # create output file and print genome to output file
