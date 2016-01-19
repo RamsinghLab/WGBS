@@ -51,6 +51,11 @@ for index in range(numberOfPropertyItems):
     	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Projects':
         	projectID = jsonObject['Properties']['Items'][index]['Items'][0]['Id']
 
+
+# create output csv file for sample names
+			file = '/data/scratch/samplenames.csv' #this will create a csv
+			outFile = open(file ,'w')
+
 for index in range(numberOfPropertyItems):
 # set sample parameters
     	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Samples':
@@ -67,20 +72,19 @@ for index in range(numberOfPropertyItems):
        			if len(R1files) != len(R2files):
            			print "number of R1 and R2 files do not match"
             			sys.exit()
+            		# create the output directories for all the appresults with the given projectID	
 			sampleOutDir = '/data/output/appresults/%s/%s' %(projectID,sampleName[sample])
+			# write the 
+			outFile.write('%s\n' %(sampleName[sample]))
 			os.system('mkdir -p "%s"' %(sampleOutDir))
 			
+# close the csv containing the filenames 
+outFile.close()
+
 # create output file and print ProjectID
-			file = '/data/scratch/projectid.txt' #this will create a csv
+			file = '/data/scratch/projectid.txt' #this will create a txt file
 			outFile = open(file ,'w')
-        		outFile.write('%s' %(projectID)) #stores each sample name in a new row  
-                	outFile.close()
-                	
-# create output file and print sample names to output file
-			file = '/data/scratch/samplenames.csv' #this will create a csv
-			outFile = open(file ,'w')
-        		for sample in sampleName:
-				outFile.write('%s\n' %(sample)) #stores each sample name in a new row  
+        		outFile.write('%s' %(projectID)) #stores the projectID in a txt file  
                 	outFile.close()
 
 # create output file and print genome to output file
