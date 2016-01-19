@@ -74,7 +74,7 @@ for index in range(numberOfPropertyItems):
             			sys.exit()
             		# create the output directories for all the appresults with the given projectID	
 			sampleOutDir = '/data/output/appresults/%s/%s' %(projectID,sampleName[sample])
-			# write the 
+			# write the sample names to csv, with tabs
 			outFile.write('%s\n' %(sampleName[sample]))
 			os.system('mkdir -p "%s"' %(sampleOutDir))
 			
