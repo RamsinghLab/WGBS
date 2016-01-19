@@ -70,22 +70,25 @@ for index in range(numberOfPropertyItems):
 			sampleOutDir = '/data/output/appresults/%s/%s' %(projectID,sampleName[sample])
 			os.system('mkdir -p "%s"' %(sampleOutDir))
 			
+# create output file and print ProjectID
+			file = '/data/scratch/projectid.csv' #this will create a csv
+			outFile = open(file ,'w')
+        		for sample in sampleName:
+				outFile.write('%s\n' %(sample)) #stores each sample name in a new row  
+                	outFile.close()
 # create output file and print sample names to output file
 			file = '/data/scratch/samplenames.csv' #this will create a csv
 			outFile = open(file ,'w')
-			count = 0	
         		for sample in sampleName:
-				count += 1
-				outFile.write('%s,%s\n' %(count,sample))  
+				outFile.write('%s\n' %(sample)) #stores each sample name in a new row  
                 	outFile.close()
 
 # create output file and print parameters to output file
 			file = '/data/scratch/parameters.csv' #this will create a csv
 			outFile = open(file ,'w')
-			count = 0	
-        		for parameter in parameter_list:
-				count += 1
-				outFile.write('%s,%s\n' %(count,parameter))  
+        		for Genome in parameter_list:
+        			for Chromosome in parameter_list:
+					outFile.write('%s\n,%s' %(Genome,Chromosome)) #stores each parameter value in a new row  
                 	outFile.close()
                 	
 #create metadata file for each appresult 
