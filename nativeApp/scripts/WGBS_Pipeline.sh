@@ -6,10 +6,14 @@
 cd /scripts/
 python parse_Appsession.py
 
-#read the text files produced by the app session and determine the genome and chromosome
+#read the text files produced by the app session and determine the genome, chromosome, projectID, and sampleNames
 cd /data/scratch/
 genome='cat genome.txt'
 chromosome='cat chromosome.txt'
+projectID='cat projectid.txt'
+
+#loop through the sampleName.csv file and assign sample names to new variables
+
 
 #tar the genome and chromosome needed for the analysis 
 
@@ -31,11 +35,16 @@ fi
 
 #now that the desired genome and chromosome have been decompressed, the analysis can proceed
 
-#make the necessary directories for the transition files
-mkdir /data/output/appresults/alignment/
-mkdir /data/output/appresults/pileup/
-mkdir /data/output/appresults/union/
-mkdir /data/output/appresults/annotated/
+#make the necessary directories for the output files dependent on the sample names 
+
+#loop through the sample names in the csv to construct the directories 
+for 
+mkdir -p /data/output/appresults/"$projectID"/<samplename>/alignment/
+mkdir -p /data/output/appresults/"$projectID"/<samplename>/pileup/
+
+#these directories are not dependent on the sample name
+mkdir -p /data/output/appresults/"$projectID"/union/
+mkdir -p /data/output/appresults/"$projectID"/annotated/
 
 #invoke the bwa-meth script with the passing of the genome variable, and place the bam files in the data/scratch/pileometh folder
 bash bwa-meth.sh "$genome"
@@ -50,3 +59,4 @@ bash unionbedgraph.sh "$genome"
 bash metilene.sh "$genome"
 
 # invoke the sushi script to plot the bed file as a manhattan plot, and many other plots forms 
+R sushi.R
