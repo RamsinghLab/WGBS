@@ -16,7 +16,7 @@ IFS=","
 while read f1 f2
 do
     cd /data/output/appresults/"$2"/"$f1"/alignment/
-    python bwameth.py --reference /reference/human/genome/"$1".fa "$f2" --prefix "$f2"
+    python bwameth.py --reference /reference/human/genome/"$1".fa /data/input/samples/"$f2" --prefix "$f2"
 done < "$input"
 
 #complete the if statement 
@@ -38,7 +38,7 @@ IFS=","
 while read f1 f2
 do
     cd /data/output/appresults/"$2"/"$f1"/alignment/
-    python bwameth.py --reference /reference/human/genome/"$1".fa "$f2" --prefix "$f2"
+    python bwameth.py --reference /reference/human/genome/"$1".fa /data/input/samples/"$f2" --prefix "$f2"
 done < "$input"
 
 #complete the if statement 
