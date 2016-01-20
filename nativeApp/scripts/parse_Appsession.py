@@ -40,10 +40,10 @@ for index in range(numberOfPropertyItems):
         	Session = jsonObject['Properties']['Items'][index]['Content']
     		parameter_list.append(Session)
 	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Genome':
-                Genome = jsonObject['Properties']['Items'][index]['Items'][0]
+                Genome = jsonObject['Properties']['Items'][index]['Content']
                 parameter_list.append(Genome)
 	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Chromosome':
-                Chromosome = jsonObject['Properties']['Items'][index]['Items'][0]
+                Chromosome = jsonObject['Properties']['Items'][index]['Content']
                 parameter_list.append(Chromosome)
 
 
@@ -75,7 +75,7 @@ for index in range(numberOfPropertyItems):
             		# create the output directories for all the appresults with the given projectID	
 			sampleOutDir = '/data/output/appresults/%s/%s' %(projectID,sampleName[sample])
 			# write the sample names to csv, with tabs
-			outFile.write('%s\n' %(sampleName[sample]))
+			outFile.write('%s,%s\n' %(sampleName[sample]),sampleID(sample))
 			os.system('mkdir -p "%s"' %(sampleOutDir))
 			
 # close the csv containing the filenames 
@@ -90,13 +90,13 @@ outFile.close()
 # create output file and print genome to output file
 			file = '/data/scratch/genome.txt' #this will create a txt file
 			outFile = open(file ,'w')
-			outFile.write('%s' %(Genome)) #stores the desired genome
+			outFile.write('%s' %(parameter_list[Genome])) #stores the desired genome
                 	outFile.close()
 
 # create output file and print chromosome to output file
 			file = '/data/scratch/chromosome.txt' #this will create a txt file
 			outFile = open(file ,'w')
-			outFile.write('%s' %(Chromosome)) #stores the desired chromosome  
+			outFile.write('%s' %(parameter_list[Chromosome])) #stores the desired chromosome  
                 	outFile.close()                	
                 	
 #create metadata file for each appresult 
