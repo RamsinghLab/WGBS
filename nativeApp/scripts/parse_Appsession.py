@@ -49,7 +49,7 @@ for index in range(numberOfPropertyItems):
 
 # set project ID
     	if jsonObject['Properties']['Items'][index]['Name'] == 'Input.Projects':
-        	projectID = jsonObject['Properties']['Items'][index]['Items'][0]['Id']
+        	projectID = jsonObject['Properties']['Items'][index]['Items'][1]['Id']
 
 
 # create output csv file for sample names
@@ -75,7 +75,7 @@ for index in range(numberOfPropertyItems):
             		# create the output directories for all the appresults with the given projectID	
 			sampleOutDir = '/data/output/appresults/%s/%s' %(projectID,sampleName[sample])
 			# write the sample names to csv, with tabs
-			outFile.write('%s,%s\n' %(sampleName[sample]),sampleID(sample))
+			outFile.write('%s,%s\n' %(sampleName[sample]),sampleID[sample])
 			os.system('mkdir -p "%s"' %(sampleOutDir))
 			
 # close the csv containing the filenames 
