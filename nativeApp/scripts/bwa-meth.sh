@@ -18,10 +18,12 @@ IFS=","
 #f1 is the sample name, and f2 is the sample id 
 while read f1 f2
 do
+    #define the prefix 
+    PREFIX='/data/output/appresults/"$2"/"$f1"/alignment/"$f2".output'
     #creates bam files for each fastq
-    python bwameth.py --reference $REF /data/input/samples/"$f2" --prefix /data/output/appresults/"$2"/"$f1"/"$f2".output
+    python bwameth.py --reference $REF /data/input/samples/"$f2" --prefix $PREFIX
     #produce png bias plots for each bam file along with a text file
-    python bias-plot.py /data/output/appresults/"$2"/"$f1"/"$f2".output.bam $REF
+    python bias-plot.py $PREFIX.bam $REF
 done < "$input"
 
 #complete the if statement 
@@ -45,10 +47,12 @@ IFS=","
 #f1 is the sample name, and f2 is the sample id 
 while read f1 f2
 do
+    #define the prefix 
+    PREFIX='/data/output/appresults/"$2"/"$f1"/alignment/"$f2".output'
     #creates bam files for each fastq
-    python bwameth.py --reference $REF /data/input/samples/"$f2" --prefix /data/output/appresults/"$2"/"$f1"/"$f2".output
+    python bwameth.py --reference $REF /data/input/samples/"$f2" --prefix $PREFIX
     #produce png bias plots for each bam file along with a text file
-    python bias-plot.py /data/output/appresults/"$2"/"$f1"/"$f2".output.bam $REF
+    python bias-plot.py $PREFIX.bam $REF
 done < "$input"
 
 #complete the if statement 
