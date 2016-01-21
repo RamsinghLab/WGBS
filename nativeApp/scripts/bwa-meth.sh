@@ -18,12 +18,10 @@ IFS=","
 #f1 is the sample name, and f2 is the sample id 
 while read f1 f2
 do
-    #naviagte to the correct output folder 
-    cd /data/output/appresults/"$2"/"$f1"/alignment/
     #creates bam files for each fastq
-    python bwameth.py --reference $REF /data/input/samples/"$f2".fastq --prefix "$f2".output
+    python bwameth.py --reference $REF /data/input/samples/"$f2".fastq --prefix /data/output/appresults/"$2"/"$f1"/"$f2".bias1
     #produce png bias plots for each bam file along with a text file
-    python bias-plot.py "$f2".output.bam $REF
+    python bias-plot.py /data/output/appresults/"$2"/"$f1"/"$f2".bias1.bam $REF
 done < "$input"
 
 #complete the if statement 
@@ -41,18 +39,16 @@ REF='/reference/mouse/genome/"$1".fa'
 #index the reference
 python bwameth.py index $REF
 
-#align all of the fastq samples in the data/input/samples/* folder, and maintain sample names from the csv
+#align all of the samples in the data/input/samples/ folder, and maintain sample names
 input="/data/scratch/samplenames.csv"
 IFS=","
 #f1 is the sample name, and f2 is the sample id 
 while read f1 f2
 do
-    #naviagte to the correct output folder 
-    cd /data/output/appresults/"$2"/"$f1"/alignment/
     #creates bam files for each fastq
-    python bwameth.py --reference $REF /data/input/samples/"$f2".fastq --prefix "$f2".output
-    #produces png bias plots for each bam file along with a text file
-    python bias-plot.py "$f2".output.bam $REF
+    python bwameth.py --reference $REF /data/input/samples/"$f2".fastq --prefix /data/output/appresults/"$2"/"$f1"/"$f2".bias1
+    #produce png bias plots for each bam file along with a text file
+    python bias-plot.py /data/output/appresults/"$2"/"$f1"/"$f2".bias1.bam $REF
 done < "$input"
 
 #complete the if statement 
