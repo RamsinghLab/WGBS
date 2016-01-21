@@ -53,6 +53,7 @@ RUN bash /scripts/bwa-meth-install-native.sh
 RUN bash /scripts/metilene-install-native.sh
 RUN bash /scripts/pileometh-install-native.sh
 RUN bash /scripts/bedtools-install-native.sh
+RUN Rscript /scripts/sushi-install-native.R
 
 RUN apt-get update
 ###### End Installation ###########
