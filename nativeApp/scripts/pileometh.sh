@@ -16,10 +16,8 @@ IFS=","
 while read f1 f2
 do
     #the following code uses a reference genome
-    #navigate to the correct output folder 
-    cd /data/output/appresults/"$3"/"$f1"/pileup/"$1"/
     #produce bedgraph files that maintain the sample id name, but are now <sampleID>.meth.bedgraph, for the input chromosome
-    PileOMeth extract --fraction $REF1 /data/output/appresults/"$3"/"$f1"/alignment/"$f2".output.bam
+    PileOMeth extract --fraction $REF1 /data/output/appresults/"$3"/"$f1"/"$f2".output.bam
     #produce bias plots of the bam files
     PileOMeth mbias $REF1 /data/output/appresults/"$3"/"$f1"/alignment/"$f2".output.bam "$f2".bias
     
