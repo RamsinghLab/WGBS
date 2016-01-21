@@ -1,12 +1,12 @@
 #this script will install the necessary packages to use sushi, and then proceed with the analysis 
 
 #capture the passed variables
-args <- commandArgs()
+args <- commandArgs(trailingOnly=TRUE)
 
 #assign the captured args to variable names
-genome = arg[6]
-chromosome = arg[7]
-projectID = arg[8]
+genome <- arg[1]
+chromosome <- arg[2]
+projectID <- arg[3]
 
 #add the source, and install the package
 source("https://bioconductor.org/biocLite.R")
