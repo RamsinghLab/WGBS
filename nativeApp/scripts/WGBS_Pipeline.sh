@@ -34,7 +34,16 @@ fi
 
 #now that the desired genome and chromosome have been decompressed, the analysis can proceed
 
-#the following directories are not dependent on the sample names
+#make the output directory for the aligned bam files
+#align all of the samples in the data/input/samples/ folder, and maintain sample names
+input="/data/scratch/samplenames.csv"
+IFS=","
+#f1 is the sample name, and f2 is the sample id 
+while read f1 f2
+do
+  mkdir -p /data/output/appresults/"$projectID"/"$f1"/"$genome"/
+  mkdir -p /data/output/appresults/"$projectID"/"$f1"/"$chromosome"/
+done < "$input"
 
 #make the output directory for the unioned bedgraph text file, genome and chromosome based
 mkdir -p /data/output/appresults/"$projectID"/union/"$genome"/
