@@ -59,16 +59,16 @@ mkdir -p /data/output/appresults/"$projectID"/annotated/"$genome"/
 mkdir -p /data/output/appresults/"$projectID"/annotated/"$chromosome"/
 
 #invoke the bwa-meth script with the passing of the genome variable, and place the bam files in their representative sample folders
-bash bwa-meth.sh "$genome" "$projectID"
+bash /scripts/bwa-meth.sh "$genome" "$projectID"
 
 #invoke the pileometh script with the passing of genome and the chromosome, and place the bedgraphs in their representative sample folders
-bash pileometh.sh "$genome" "$chromosome" "$projectID"
+bash /scripts/pileometh.sh "$genome" "$chromosome" "$projectID"
 
 #invoke the unionbedgraph script and place the text file in the /data/output/"$projectID"/annotated/"$genome" or "$chromosome"
-bash unionbedgraph.sh "$genome" "$chromosome" "$projectID"
+bash /scripts/unionbedgraph.sh "$genome" "$chromosome" "$projectID"
 
 #invovke the metilene script with the text file produced by unionbedgraph, and place the beds file for sushi
-bash metilene.sh "$genome" "$chromosome" "$projectID"
+bash /scripts/metilene.sh "$genome" "$chromosome" "$projectID"
 
 # invoke the sushi script to plot the bed file as a manhattan plot, and many other plots forms 
-R sushi.R
+Rscript /scripts/sushi.R "$genome" "$chromosome" "$projectID" --save
