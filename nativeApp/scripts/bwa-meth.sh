@@ -19,9 +19,9 @@ IFS=","
 while read f1 f2
 do
     #creates bam files for each fastq
-    python bwameth.py --reference $REF /data/input/samples/"$f2".fastq --prefix /data/output/appresults/"$2"/"$f1"/"$f2".bias1
+    python bwameth.py --reference $REF /data/input/samples/"$f2".fastq --prefix /data/output/appresults/"$2"/"$f1"/"$f2".output
     #produce png bias plots for each bam file along with a text file
-    python bias-plot.py /data/output/appresults/"$2"/"$f1"/"$f2".bias1.bam $REF
+    python bias-plot.py /data/output/appresults/"$2"/"$f1"/"$f2".output.bam $REF
 done < "$input"
 
 #complete the if statement 
@@ -46,9 +46,9 @@ IFS=","
 while read f1 f2
 do
     #creates bam files for each fastq
-    python bwameth.py --reference $REF /data/input/samples/"$f2".fastq --prefix /data/output/appresults/"$2"/"$f1"/"$f2".bias1
+    python bwameth.py --reference $REF /data/input/samples/"$f2".fastq --prefix /data/output/appresults/"$2"/"$f1"/"$f2".output
     #produce png bias plots for each bam file along with a text file
-    python bias-plot.py /data/output/appresults/"$2"/"$f1"/"$f2".bias1.bam $REF
+    python bias-plot.py /data/output/appresults/"$2"/"$f1"/"$f2".output.bam $REF
 done < "$input"
 
 #complete the if statement 
