@@ -1,5 +1,5 @@
 #!/bin/sh
-#this is the full pipeline script to be run with basespace
+#this is the full pipeline script to be run with basespace illumina
 #the script will be a general bash script that will call all the other scripts in order, depeneding on the process/choices of the user
 
 #first execute the python script that will parse the app session
@@ -12,8 +12,7 @@ genome='cat genome.txt'
 chromosome='cat chromosome.txt'
 projectID='cat projectid.txt'
 
-#loop through the sampleName.csv file and assign sample names to new variables
-
+#the sample name csv is in the /data/scratch folder, and will be maintained as a file for directory looping in future output dumps
 
 #tar the genome and chromosome needed for the analysis 
 
@@ -35,28 +34,27 @@ fi
 
 #now that the desired genome and chromosome have been decompressed, the analysis can proceed
 
-#make the necessary directories for the output files dependent on the sample names 
+#the following directories are not dependent on the sample names
 
-#loop through the sample names in the csv to construct the directories 
-for 
-mkdir -p /data/output/appresults/"$projectID"/<samplename>/alignment/
-mkdir -p /data/output/appresults/"$projectID"/<samplename>/pileup/
+#make the output directory for the unioned bedgraph text file, genome and chromosome based
+mkdir -p /data/output/appresults/"$projectID"/union/"$genome"/
+mkdir -p /data/output/appresults/"$projectID"/union/"$chromosome"/
 
-#these directories are not dependent on the sample name
-mkdir -p /data/output/appresults/"$projectID"/union/
-mkdir -p /data/output/appresults/"$projectID"/annotated/
+#make the output directory for the annotated bed file, genome and chromosome based
+mkdir -p /data/output/appresults/"$projectID"/annotated/"$genome"/
+mkdir -p /data/output/appresults/"$projectID"/annotated/"$chromosome"/
 
-#invoke the bwa-meth script with the passing of the genome variable, and place the bam files in the data/scratch/pileometh folder
-bash bwa-meth.sh "$genome"
+#invoke the bwa-meth script with the passing of the genome variable, and place the bam files in their representative sample folders
+bash bwa-meth.sh "$genome" "$projectID"
 
-#invoke the pileometh script with the passing of genome and the chromosome, and place the bedgraphs in the data/scratch
-bash pileometh.sh "$genome" "$chromosome"
+#invoke the pileometh script with the passing of genome and the chromosome, and place the bedgraphs in their representative sample folders
+bash pileometh.sh "$genome" "$chromosome" "$projectID"
 
 #invoke the unionbedgraph script and place the text file in the data/scratch/metilene folder
-bash unionbedgraph.sh "$genome"
+bash unionbedgraph.sh "$genome" "$chromosome" "$projectID"
 
 #invovke the metilene script with the text file produced by unionbedgraph, and place the beds into the data/scratch/sushi folder
-bash metilene.sh "$genome"
+bash metilene.sh "$genome" "$chromosome" "$projectID"
 
 # invoke the sushi script to plot the bed file as a manhattan plot, and many other plots forms 
 R sushi.R
