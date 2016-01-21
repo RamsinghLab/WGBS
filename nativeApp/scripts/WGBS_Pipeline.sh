@@ -41,9 +41,14 @@ IFS=","
 #f1 is the sample name, and f2 is the sample id 
 while read f1 f2
 do
-  mkdir -p /data/output/appresults/"$projectID"/"$f1"/"$genome"/
-  mkdir -p /data/output/appresults/"$projectID"/"$f1"/"$chromosome"/
+  mkdir -p /data/output/appresults/"$projectID"/"$f1"/alignment/
+  mkdir -p /data/output/appresults/"$projectID"/"$f1"/pileup/"$genome"/
+  mkdir -p /data/output/appresults/"$projectID"/"$f1"/pileup/"$chromosome"/
 done < "$input"
+
+#make the output directory for the bedgraph files, genome and chromosome based
+mkdir -p /data/output/appresults/"$projectID"/bedgraphs/"$genome"/
+mkdir -p /data/output/appresults/"$projectID"/bedgraphs/"$chromosome"/
 
 #make the output directory for the unioned bedgraph text file, genome and chromosome based
 mkdir -p /data/output/appresults/"$projectID"/union/"$genome"/
@@ -59,10 +64,10 @@ bash bwa-meth.sh "$genome" "$projectID"
 #invoke the pileometh script with the passing of genome and the chromosome, and place the bedgraphs in their representative sample folders
 bash pileometh.sh "$genome" "$chromosome" "$projectID"
 
-#invoke the unionbedgraph script and place the text file in the data/scratch/metilene folder
+#invoke the unionbedgraph script and place the text file in the /data/output/"$projectID"/annotated/"$genome" or "$chromosome"
 bash unionbedgraph.sh "$genome" "$chromosome" "$projectID"
 
-#invovke the metilene script with the text file produced by unionbedgraph, and place the beds into the data/scratch/sushi folder
+#invovke the metilene script with the text file produced by unionbedgraph, and place the beds file for sushi
 bash metilene.sh "$genome" "$chromosome" "$projectID"
 
 # invoke the sushi script to plot the bed file as a manhattan plot, and many other plots forms 
