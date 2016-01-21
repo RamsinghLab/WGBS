@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 import fnmatch 
 import sys
